@@ -20,3 +20,8 @@ server:
     context-path: /api
   error:
     include-stacktrace: never
+
+  sql:
+    init:
+      data-location: classpath:import.sql
+      mode: always
