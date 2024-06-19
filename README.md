@@ -1,40 +1,99 @@
-# Read Me First
-The following was discovered as part of building this project:
+# Account Manager Service
 
-# Getting Started
+## Introduction
 
-### Reference Documentation
-For further reference, please consider the following sections:
+The Account Manager application is a simple Spring Boot application that provides RESTful APIs 
+to manage account balances and transfer money between accounts. This application uses an H2 file database for data persistence.
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.3.0/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.3.0/maven-plugin/reference/html/#build-image)
-* [Docker Compose Support](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#features.docker-compose)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#web)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#using.devtools)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Validation](https://docs.spring.io/spring-boot/docs/3.3.0/reference/htmlsingle/index.html#io.validation)
+## Technologies Used
 
-### Guides
-The following guides illustrate how to use some features concretely:
+- Java 22
+- Spring Boot 3
+- Maven
+- H2 Database
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Validation](https://spring.io/guides/gs/validating-form-input/)
+## Prerequisites
 
-### Docker Compose support
-This project contains a Docker Compose file named `compose.yaml`.
+- Java Development Kit (JDK) 22
+- Maven
+- IntelliJ IDEA
 
-However, no services were found. As of now, the application won't start!
+## Getting Started
 
-Please make sure to add at least one service in the `compose.yaml` file.
+### Building and Running the Application with IntelliJ IDEA
 
-### Maven Parent overrides
+#### Clone the Repository
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+```sh
+git clone git@github.com:oseifrimpong/account-manager.git
+cd account-manager
+```
 
+#### Open the Project in IntelliJ IDEA
+
+1. Open IntelliJ IDEA.
+2. Click on `File -> Open` and select the `account-manager` project directory.
+
+#### Build the Project
+
+1. Navigate to the Maven tool window (`View -> Tool Windows -> Maven`).
+2. Click on `Reload All Maven Projects` to ensure all dependencies are downloaded.
+3. Once the project is built successfully, you can proceed to run it.
+
+#### Run the Application
+
+1. Navigate to `src/main/java/com/acmebank/accountmanager/AccountManagerApplication.java`.
+2. Right-click on the `AccountManagerApplication` class and select `Run 'AccountManagerApplication'`.
+
+#### Access the Application
+
+- The application will start on port `8000` with context path `/api`.
+- You can access the H2 console at `http://localhost:8000/api/h2-console`.
+
+## API Endpoints
+
+### Get Balance
+
+- **URL:** `/api/accounts/{accountNumber}/balance`
+- **Method:** `GET`
+- **Response:**
+
+  ```json
+  {
+  "status": "success",
+  "message": "Balance retrieved successfully",
+  "data": 1000000
+  }
+  ```
+
+### Transfer Money
+
+- **URL:** `/api/accounts/transfer`
+- **Method:** `POST`
+- **Request Parameters:**
+    - `fromAccountNumber`: Source account number
+    - `toAccountNumber`: Destination account number
+    - `amount`: Amount to transfer
+- **Response:**
+
+  ```json
+  {
+  "status": "success",
+  "message": "Transfer completed successfully",
+  "data": null
+  }
+  ```
+
+## Troubleshooting
+
+### H2 Database Console URL
+
+- **URL:** `http://localhost:8000/api/h2-console`
+- **JDBC URL:** `jdbc:h2:file:~/acmebankdb`
+- **Username:** `sa`
+- **Password:** (leave it blank)
+
+### Common Issues
+
+- Ensure the H2 database file path is correct.
+- Verify that the `data.sql` file is placed correctly in `src/main/resources`.

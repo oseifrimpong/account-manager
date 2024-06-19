@@ -7,9 +7,10 @@ spring:
     username: sa
     password:
     initialize: true
+    data: classpath:import.sql
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     database-platform: org.hibernate.dialect.H2Dialect
   h2:
     console:
@@ -23,5 +24,5 @@ server:
 
   sql:
     init:
-      data-location: classpath:import.sql
+      data-locations: classpath:import.sql
       mode: always
