@@ -94,7 +94,10 @@ cd account-manager
 - **Username:** `sa`
 - **Password:** (leave it blank)
 
-### Common Issues
+### Improvements
 
-- Ensure the H2 database file path is correct.
-- Verify that the `data.sql` file is placed correctly in `src/main/resources`.
+- Add Open-API documentation for the API endpoints using Swagger.
+- Implement a mechanism to handle concurrent transactions.
+- Add authentication and authorization to the API endpoints.
+- Create a Dockerfile to containerize the application.
+- Add a new entity to handle account transactions, history, currency data and user accounts with roles.
