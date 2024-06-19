@@ -10,6 +10,7 @@ to manage account balances and transfer money between accounts. This application
 - Java 22
 - Spring Boot 3
 - Maven
+- Flyway
 - H2 Database
 
 ## Prerequisites

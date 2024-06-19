@@ -6,12 +6,19 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
-    initialize: true
-    data: classpath:import.sql
   jpa:
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.H2Dialect
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true}
+    encoding: UTF-8
+    locations: classpath:${DATABASE_MIGRATION_PATH:db/migration}
+    sql-migration-prefix: V
+    sql-migration-separator: __
+    baseline-version: ${FLYWAY_BASELINE_VERSION:20240619.001}
+    baseline-on-migrate: true
+    out-of-order: true
   h2:
     console:
       enabled: true
@@ -21,8 +28,3 @@ server:
     context-path: /api
   error:
     include-stacktrace: never
-
-  sql:
-    init:
-      data-locations: classpath:import.sql
-      mode: always
