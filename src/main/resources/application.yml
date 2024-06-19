@@ -7,7 +7,7 @@ spring:
 server:
   port: 8000
   servlet:
-    context-path: ${CONTEXT_PATH:/api}
+    context-path: /api
   error:
     include-stacktrace: never
   datasource:
